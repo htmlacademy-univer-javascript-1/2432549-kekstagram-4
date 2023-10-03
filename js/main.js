@@ -3,6 +3,7 @@ const AVATAR_COUNT = 6;
 const LIKE_MIN_COUNT = 15;
 const LIKE_MAX_COUNT = 200;
 const COMMENTS_COUNT = 30;
+const COMMENTS_IDS = 100000;
 const COMMENTS_EXAMPLES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -41,7 +42,20 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const idCreator = () => {
+const commentsIdCreator = () => {
+  const ids = [];
+
+  return () =>{
+    let id = getRandomInteger(1, COMMENTS_IDS);
+    while (ids.includes(id)){
+      id = getRandomInteger(1, COMMENTS_IDS);
+    }
+    ids.push(id);
+    return id;
+  };
+};
+
+const picturesIdCreator = () => {
   let previousId = 0;
 
   return () => {
@@ -50,15 +64,14 @@ const idCreator = () => {
   };
 };
 
-const commentsIdGenerator = idCreator();
-
-const picturesIdGenerator = idCreator();
-
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const getImageUrl = () => `photos/${getRandomInteger(1, PICTURES_COUNT)}.jpg`;
 
 const getAvatarUrl = () => `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`;
+
+const commentsIdGenerator = commentsIdCreator();
+const picturesIdGenerator = picturesIdCreator();
 
 const createMessages = () =>
   Array.from({length: getRandomInteger(1,2)},
