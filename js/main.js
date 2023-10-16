@@ -4,6 +4,7 @@ const LIKE_MIN_COUNT = 15;
 const LIKE_MAX_COUNT = 200;
 const COMMENTS_COUNT = 30;
 const COMMENTS_IDS = 100000;
+const COMMENTS_PER_BLOCK = 2;
 const COMMENTS_EXAMPLES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -74,7 +75,7 @@ const commentsIdGenerator = commentsIdCreator();
 const picturesIdGenerator = picturesIdCreator();
 
 const createMessages = () =>
-  Array.from({length: getRandomInteger(1,2)},
+  Array.from({length: getRandomInteger(1,COMMENTS_PER_BLOCK)},
     () => getRandomArrayElement(COMMENTS_EXAMPLES)).join(' ');
 
 const createComments = () => ({
@@ -91,3 +92,5 @@ const createPictureBlock = () =>({
   likes: getRandomInteger(LIKE_MIN_COUNT, LIKE_MAX_COUNT),
   comments: Array.from({length: getRandomInteger(0, COMMENTS_COUNT)}, createComments)
 });
+
+createPictureBlock();
