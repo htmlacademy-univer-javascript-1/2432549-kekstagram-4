@@ -1,4 +1,4 @@
 import { createPictureBlocks } from './data.js';
-import './renderingMiniature.js';
+import { renderMiniatures } from './renderingMiniature.js';
 
-createPictureBlocks();
+renderMiniatures(createPictureBlocks());
