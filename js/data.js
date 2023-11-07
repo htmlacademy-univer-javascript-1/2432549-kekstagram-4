@@ -1,4 +1,4 @@
-import { getRandomInteger, getRandomArrayElement } from './util';
+import { getRandomInteger, getRandomArrayElement } from './util.js';
 const PICTURES_COUNT = 25;
 const AVATAR_COUNT = 6;
 const LIKE_MIN_COUNT = 15;
@@ -85,5 +85,7 @@ const createPictureBlock = () =>({
   comments: Array.from({length: getRandomInteger(0, COMMENTS_COUNT)}, createComments)
 });
 
-export {createPictureBlock};
+const createPictureBlocks = (count = PICTURES_COUNT) => Array.from({length: count}, createPictureBlock);
+
+export {createPictureBlocks};
 
