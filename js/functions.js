@@ -7,3 +7,6 @@ const isPalindromic = (string) =>{
 
   return reversedString===preparedString;
 };
+
+isEqualOrLess();
+isPalindromic();
