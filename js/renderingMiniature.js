@@ -3,12 +3,13 @@ const miniaturesTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const createMiniature = (({url, description, likes, comments}) => {
+const createMiniature = (({id, url, description, likes, comments}) => {
   const miniatureElement = miniaturesTemplate.cloneNode(true);
   miniatureElement.querySelector('img').src = url;
   miniatureElement.querySelector('img').alt = description;
   miniatureElement.querySelector('.picture__comments').textContent = comments.length;
   miniatureElement.querySelector('.picture__likes').textContent = likes;
+  miniatureElement.querySelector('img').setAttribute('id', id);
 
   return miniatureElement;
 });

@@ -87,5 +87,7 @@ const createPictureBlock = () =>({
 
 const createPictureBlocks = (count = PICTURES_COUNT) => Array.from({length: count}, createPictureBlock);
 
-export {createPictureBlocks};
+const picturesData = createPictureBlocks();
+
+export {picturesData};
 

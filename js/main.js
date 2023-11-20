@@ -1,4 +1,5 @@
-import { createPictureBlocks } from './data.js';
+import { picturesData } from './data.js';
 import { renderMiniatures } from './renderingMiniature.js';
+import './popupFullPicture.js';
 
-renderMiniatures(createPictureBlocks());
+renderMiniatures(picturesData);
