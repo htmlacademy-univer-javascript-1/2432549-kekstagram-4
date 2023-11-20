@@ -1,5 +1,8 @@
 import { picturesData } from './data.js';
 
+const AVATAR_WIDTH = 35;
+const AVATAR_HEIGHT = 35;
+
 const pictureList = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const cancelButton = bigPicture.querySelector('.cancel');
@@ -60,8 +63,8 @@ const createComment = ({avatar, message, name}) => {
   imgComment.classList.add('social__picture');
   imgComment.src = avatar;
   imgComment.alt = name;
-  imgComment.width = 35;
-  imgComment.height = 35;
+  imgComment.width = AVATAR_WIDTH;
+  imgComment.height = AVATAR_HEIGHT;
   p.textContent = message;
   li.appendChild(imgComment);
   li.appendChild(p);
@@ -96,12 +99,11 @@ const findPicture = (id) =>{
   return picture;
 };
 
-pictureList.onclick = function(evt) {
+pictureList.addEventListener('click', (evt) => {
   evt.preventDefault();
-
   const target = evt.target;
 
   if (target.tagName === 'IMG') {
     mainPicture(findPicture(target.id));
   }
-};
+});
