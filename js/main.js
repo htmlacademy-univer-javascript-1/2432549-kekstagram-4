@@ -1,5 +1,5 @@
 import { picturesData } from './data.js';
 import { renderMiniatures } from './renderingMiniature.js';
-import './popup-picture.js';
+import './popupFullPicture.js';
 
 renderMiniatures(picturesData);
