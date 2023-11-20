@@ -55,10 +55,10 @@ loaderButton.addEventListener('click', (evt) =>{
 
 const createComment = ({avatar, message, name}) => {
   const li = document.createElement('li');
-  li.classList.add('social__comment');
-  li.classList.add('hidden');
   const imgComment = document.createElement('img');
   const p = document.createElement('p');
+  li.classList.add('social__comment');
+  li.classList.add('hidden');
   p.classList.add('social__text');
   imgComment.classList.add('social__picture');
   imgComment.src = avatar;
