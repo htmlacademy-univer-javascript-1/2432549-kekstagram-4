@@ -20,9 +20,8 @@ document.addEventListener('keydown', (evt) => {
 });
 
 document.body.addEventListener('click', (evt) =>{
-  if (evt.target.classList.contains('big-picture') || evt.target.classList.contains('img-upload__overlay')){
+  if (evt.target.classList.contains('big-picture')){
     closeBigPicture();
-    closeOverlay();
   }
 });
 

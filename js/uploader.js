@@ -1,3 +1,6 @@
+import { resetScale } from './scaler.js';
+import { resetEffect, init } from './filters.js';
+
 const MAX_HASHTEGS = 5;
 const MAX_COMMENTS_LENGTH = 140;
 
@@ -8,7 +11,6 @@ const cancelButton = form.querySelector('#upload-cancel');
 const pictureOverlay = form.querySelector('.img-upload__overlay');
 const commentField = form.querySelector('.text__description');
 const hashtagsField = form.querySelector('.text__hashtags');
-const scale = form.querySelector('input[name="scale"]');
 
 const RegexpHASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const ErrorText = {
@@ -38,12 +40,15 @@ const closeOverlay =() => {
   cancelButton.removeEventListener('click', closeOverlay);
   pristine.reset();
   pictureInput.value = '';
+  resetScale();
+  resetEffect();
 };
 
 pictureInput.addEventListener('change', () => {
   pictureOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   cancelButton.addEventListener('click', closeOverlay);
+  init();
 });
 
 const normalizeTags = (tagString) => tagString
@@ -96,7 +101,6 @@ form.addEventListener('submit', (evt) => {
     pictureInput.value = '';
     commentField.value = '';
     hashtagsField.value = '';
-    scale.value = '100%';
   }
 });
 
