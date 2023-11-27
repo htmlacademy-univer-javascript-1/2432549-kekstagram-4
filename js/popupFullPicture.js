@@ -1,4 +1,4 @@
-import { picturesData } from './data.js';
+import { picturesData, LOADED_COMMENT } from './data.js';
 
 const AVATAR_WIDTH = 35;
 const AVATAR_HEIGHT = 35;
@@ -15,7 +15,7 @@ function closeBigPicture(){
 }
 
 function openFiveComments (commentsHidden) {
-  let lenght = 5;
+  let lenght = LOADED_COMMENT;
 
   if (commentsHidden.length <= lenght){
     lenght = commentsHidden.length;
@@ -30,22 +30,6 @@ function openFiveComments (commentsHidden) {
   const commentsShown = bigPicture.querySelector('.comments-shown');
   commentsShown.textContent = Number(commentsShown.textContent)+lenght;
 }
-
-document.body.addEventListener('click', (evt) =>{
-  evt.preventDefault();
-
-  if (evt.target.classList.contains('big-picture')){
-    closeBigPicture();
-  }
-});
-
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-
-    closeBigPicture();
-  }
-});
 
 cancelButton.addEventListener('click', (evt) => {
   evt.preventDefault();
@@ -108,10 +92,12 @@ const findPicture = (id) =>{
 };
 
 pictureList.addEventListener('click', (evt) => {
-  evt.preventDefault();
   const target = evt.target;
 
-  if (target.tagName === 'IMG') {
+  if (target.tagName === 'IMG' & !document.body.classList.contains('modal-open')) {
+    evt.preventDefault();
     mainPicture(findPicture(target.id));
   }
 });
+
+export {closeBigPicture};

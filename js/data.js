@@ -6,6 +6,7 @@ const LIKE_MAX_COUNT = 200;
 const COMMENTS_COUNT = 30;
 const COMMENTS_IDS = 100000;
 const COMMENTS_PER_BLOCK = 2;
+const LOADED_COMMENT = 5;
 const COMMENTS_EXAMPLES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -89,5 +90,5 @@ const createPictureBlocks = (count = PICTURES_COUNT) => Array.from({length: coun
 
 const picturesData = createPictureBlocks();
 
-export {picturesData};
+export {picturesData, LOADED_COMMENT};
 
