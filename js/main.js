@@ -9,7 +9,7 @@ setOnSubmit(async (data) => {
     await sendData(data);
     closeOverlay();
     showSuccess();
-  } catch {
+  } catch(err) {
     showError();
   }
 });
