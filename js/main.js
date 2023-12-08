@@ -15,8 +15,8 @@ setOnSubmit(async (data) => {
 });
 
 try{
-  const data = await getData();
-  renderMiniatures(data);
+  getData()
+    .then((data) => renderMiniatures(data));
 } catch(err){
   showAlert(err.message);
 }
