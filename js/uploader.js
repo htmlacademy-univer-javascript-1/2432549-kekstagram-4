@@ -4,6 +4,11 @@ import { resetEffect, init } from './filters.js';
 const MAX_HASHTEGS = 5;
 const MAX_COMMENTS_LENGTH = 140;
 
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикация...'
+};
+
 const body = document.body;
 const form = document.querySelector('.img-upload__form');
 const pictureInput = form.querySelector('input[name="filename"]');
@@ -11,6 +16,8 @@ const cancelButton = form.querySelector('#upload-cancel');
 const pictureOverlay = form.querySelector('.img-upload__overlay');
 const commentField = form.querySelector('.text__description');
 const hashtagsField = form.querySelector('.text__hashtags');
+const submitButton = form.querySelector('.img-upload__submit');
+const counter = form.querySelector('.counter-text__current');
 
 const RegexpHASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const ErrorText = {
@@ -24,6 +31,14 @@ function isTextFieldsFocused(){
   return document.activeElement === hashtagsField ||
     document.activeElement === commentField;
 }
+
+function onInput(evt) {
+  const length = evt.target.value.length;
+  counter.textContent = length;
+}
+
+commentField.addEventListener('input', onInput);
+
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -94,14 +109,26 @@ pristine.addValidator(
   true
 );
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  if(pristine.validate()){
-    closeOverlay();
-    pictureInput.value = '';
-    commentField.value = '';
-    hashtagsField.value = '';
-  }
-});
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = SubmitButtonText.SENDING;
+};
 
-export {closeOverlay};
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = SubmitButtonText.IDLE;
+};
+
+const setOnSubmit = (callback) => {
+  form.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+
+    if(pristine.validate()){
+      blockSubmitButton();
+      await callback(new FormData(form));
+      unblockSubmitButton();
+    }
+  });
+};
+
+export {closeOverlay, setOnSubmit};

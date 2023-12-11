@@ -1,3 +1,5 @@
+import { popupBuilder } from './popupFullPicture.js';
+
 const picturesList = document.querySelector('.pictures');
 const miniaturesTemplate = document.querySelector('#picture')
   .content
@@ -22,7 +24,8 @@ const renderMiniatures = ((pictures) => {
   });
 
   picturesList.append(fragment);
+  popupBuilder(pictures);
 });
 
-export{renderMiniatures};
+export { renderMiniatures };
 

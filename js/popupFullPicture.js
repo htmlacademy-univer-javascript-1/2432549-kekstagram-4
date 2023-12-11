@@ -1,5 +1,4 @@
-import { picturesData, LOADED_COMMENT } from './data.js';
-
+const LOADED_COMMENT = 5;
 const AVATAR_WIDTH = 35;
 const AVATAR_HEIGHT = 35;
 
@@ -86,18 +85,20 @@ const mainPicture = ({url, description, likes, comments}) =>{
   document.body.classList.add('modal-open');
 };
 
-const findPicture = (id) =>{
-  const picture = picturesData.find((el) => el.id === Number(id));
+const findPicture = (data, id) =>{
+  const picture = data.find((el) => el.id === Number(id));
   return picture;
 };
 
-pictureList.addEventListener('click', (evt) => {
-  const target = evt.target;
+const popupBuilder = (data) =>{
+  pictureList.addEventListener('click', (evt) => {
+    const target = evt.target;
 
-  if (target.tagName === 'IMG' & !document.body.classList.contains('modal-open')) {
-    evt.preventDefault();
-    mainPicture(findPicture(target.id));
-  }
-});
+    if (target.tagName === 'IMG' & !document.body.classList.contains('modal-open')) {
+      evt.preventDefault();
+      mainPicture(findPicture(data, target.id));
+    }
+  });
+};
 
-export {closeBigPicture};
+export {closeBigPicture, popupBuilder};
