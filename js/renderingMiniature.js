@@ -1,5 +1,3 @@
-import { popupBuilder } from './popupFullPicture.js';
-
 const picturesList = document.querySelector('.pictures');
 const miniaturesTemplate = document.querySelector('#picture')
   .content
@@ -11,21 +9,20 @@ const createMiniature = (({id, url, description, likes, comments}) => {
   miniatureElement.querySelector('img').alt = description;
   miniatureElement.querySelector('.picture__comments').textContent = comments.length;
   miniatureElement.querySelector('.picture__likes').textContent = likes;
-  miniatureElement.querySelector('img').setAttribute('id', id);
+  miniatureElement.dataset.miniId = id;
 
   return miniatureElement;
 });
 
 const renderMiniatures = ((pictures) => {
+  picturesList.querySelectorAll('.picture').forEach((elem) => elem.remove());
   const fragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
     const miniature = createMiniature(picture);
-    fragment.append(miniature);
+    fragment.appendChild(miniature);
   });
 
-  picturesList.append(fragment);
-  popupBuilder(pictures);
+  picturesList.appendChild(fragment);
 });
 
 export { renderMiniatures };
-
