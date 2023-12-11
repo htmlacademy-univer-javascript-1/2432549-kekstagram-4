@@ -2,7 +2,6 @@ const LOADED_COMMENT = 5;
 const AVATAR_WIDTH = 35;
 const AVATAR_HEIGHT = 35;
 
-const pictureList = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const cancelButton = bigPicture.querySelector('.cancel');
 const loaderButton = bigPicture.querySelector('.comments-loader');
@@ -85,20 +84,4 @@ const mainPicture = ({url, description, likes, comments}) =>{
   document.body.classList.add('modal-open');
 };
 
-const findPicture = (data, id) =>{
-  const picture = data.find((el) => el.id === Number(id));
-  return picture;
-};
-
-const popupBuilder = (data) =>{
-  pictureList.addEventListener('click', (evt) => {
-    const target = evt.target;
-
-    if (target.tagName === 'IMG' & !document.body.classList.contains('modal-open')) {
-      evt.preventDefault();
-      mainPicture(findPicture(data, target.id));
-    }
-  });
-};
-
-export {closeBigPicture, popupBuilder};
+export {closeBigPicture, mainPicture};

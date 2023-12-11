@@ -1,8 +1,9 @@
-import { renderMiniatures } from './renderingMiniature.js';
+import { renderGallery } from './gallery.js';
 import { closeOverlay, setOnSubmit } from './uploader.js';
 import { showSuccess, showError } from './message.js';
 import { getData, sendData } from './api.js';
-import { showAlert } from './util.js';
+import { showAlert, debounce } from './util.js';
+import {init as initSort, getPicturesBySort} from './sortPictures.js';
 
 setOnSubmit(async (data) => {
   try{
@@ -16,7 +17,11 @@ setOnSubmit(async (data) => {
 
 try{
   getData()
-    .then((data) => renderMiniatures(data));
+    .then((data) => {
+      const dobouncedRender = debounce(renderGallery);
+      initSort(data, dobouncedRender);
+      renderGallery(getPicturesBySort());
+    });
 } catch(err){
   showAlert(err.message);
 }
