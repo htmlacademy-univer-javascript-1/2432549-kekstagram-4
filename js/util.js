@@ -2,6 +2,7 @@ import { closeBigPicture } from './popupFullPicture.js';
 import { closeOverlay } from './uploader.js';
 
 const ALERT_SHOW_TIME = 5000;
+const DELAY = 500;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -51,7 +52,7 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-function debounce (callback, timeoutDelay = 500) {
+function debounce (callback, timeoutDelay = DELAY) {
   let timeoutId;
 
   return (...rest) => {
