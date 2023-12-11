@@ -1,3 +1,4 @@
+import './photo.js';
 import { renderGallery } from './gallery.js';
 import { closeOverlay, setOnSubmit } from './uploader.js';
 import { showSuccess, showError } from './message.js';
