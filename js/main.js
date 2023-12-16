@@ -4,7 +4,7 @@ import { closeOverlay, setOnSubmit } from './uploader.js';
 import { showSuccess, showError } from './message.js';
 import { getData, sendData } from './api.js';
 import { showAlert, debounce } from './util.js';
-import {init as initSort, getPicturesBySort} from './sortPictures.js';
+import {init as initSort, getPicturesBySort} from './sort-pictures.js';
 
 setOnSubmit(async (data) => {
   try{

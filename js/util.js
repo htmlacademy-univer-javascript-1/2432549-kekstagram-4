@@ -1,4 +1,4 @@
-import { closeBigPicture } from './popupFullPicture.js';
+import { closeBigPicture } from './popup-full-picture.js';
 import { closeOverlay } from './uploader.js';
 
 const ALERT_SHOW_TIME = 5000;
