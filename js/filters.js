@@ -69,6 +69,7 @@ const effectsTypes = modal.querySelector('.effects');
 const slider = modal.querySelector('.effect-level__slider');
 const sliderContainer = modal.querySelector('.img-upload__effect-level');
 const effectLevel = modal.querySelector('.effect-level__value');
+const noneEffect = document.getElementById('effect-none');
 
 let activeEffect  = Effects.ORIGINAl;
 
@@ -84,7 +85,7 @@ const setImageStyle = () => {
 };
 
 const onSliderUpdate = () => {
-  effectLevel.value = slider.noUiSlider.get();
+  effectLevel.value = parseFloat(slider.noUiSlider.get());
   setImageStyle();
 };
 
@@ -130,6 +131,7 @@ const setEffct = (effect) => {
 
 const resetEffect = () => {
   setEffct(Effects.ORIGINAl);
+  noneEffect.checked = true;
 };
 
 const onEffectsChange = (evt) => {

@@ -55,6 +55,8 @@ const closeOverlay =() => {
   cancelButton.removeEventListener('click', closeOverlay);
   pristine.reset();
   pictureInput.value = '';
+  hashtagsField.value = '';
+  commentField.value = '';
   resetScale();
   resetEffect();
 };
