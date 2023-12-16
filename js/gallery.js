@@ -1,5 +1,5 @@
 import { mainPicture } from './popupFullPicture.js';
-import { renderMiniatures } from './renderingMiniature.js';
+import { renderMiniatures } from './renderMiniature.js';
 
 const picturesList = document.querySelector('.pictures');
 
