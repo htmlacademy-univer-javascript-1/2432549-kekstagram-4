@@ -3,6 +3,7 @@ import { resetEffect, init } from './filters.js';
 
 const MAX_HASHTEGS = 5;
 const MAX_COMMENTS_LENGTH = 140;
+const REGEXP_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const SubmitButtonText = {
   IDLE: 'Опубликовать',
@@ -19,7 +20,12 @@ const hashtagsField = form.querySelector('.text__hashtags');
 const submitButton = form.querySelector('.img-upload__submit');
 const counter = form.querySelector('.counter-text__current');
 
-const RegexpHASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
+const pristine = new Pristine(form, {
+  classTo: 'img-upload__field-wrapper',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextClass: 'img-upload__field-wrapper--error'
+});
+
 const ErrorText = {
   INVALID_COUNT:  `Максимум ${MAX_HASHTEGS} хэштегов`,
   NOT_UNIQUE: 'Хэштеги должны быть уникальными',
@@ -38,13 +44,6 @@ function onInput(evt) {
 }
 
 commentField.addEventListener('input', onInput);
-
-
-const pristine = new Pristine(form, {
-  classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper--error'
-});
 
 const closeOverlay =() => {
   if (isTextFieldsFocused()){
@@ -73,7 +72,7 @@ const normalizeTags = (tagString) => tagString
   .split(' ')
   .filter((tag) =>  Boolean(tag.length));
 
-const hasValidTags = (value) =>  normalizeTags(value).every((tag) => RegexpHASHTAG.test(tag));
+const hasValidTags = (value) =>  normalizeTags(value).every((tag) => REGEXP_HASHTAG.test(tag));
 const hasValidCount = (value) => normalizeTags(value).length <= MAX_HASHTEGS;
 const hasUniqueTags = (value) =>  {
   const lowerCaseTags = normalizeTags(value).map((tag) => tag.toLowerCase());
