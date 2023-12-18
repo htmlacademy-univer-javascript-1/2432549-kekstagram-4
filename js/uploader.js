@@ -10,6 +10,13 @@ const SubmitButtonText = {
   SENDING: 'Публикация...'
 };
 
+const ErrorText = {
+  INVALID_COUNT:  `Максимум ${MAX_HASHTEGS} хэштегов`,
+  NOT_UNIQUE: 'Хэштеги должны быть уникальными',
+  INVALID_PATTERN: 'Неправильный хэштег',
+  LONG_COMMENT: 'Комментарий не может быть длиннее 140 символов'
+};
+
 const body = document.body;
 const form = document.querySelector('.img-upload__form');
 const pictureInput = form.querySelector('input[name="filename"]');
@@ -25,13 +32,6 @@ const pristine = new Pristine(form, {
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error'
 });
-
-const ErrorText = {
-  INVALID_COUNT:  `Максимум ${MAX_HASHTEGS} хэштегов`,
-  NOT_UNIQUE: 'Хэштеги должны быть уникальными',
-  INVALID_PATTERN: 'Неправильный хэштег',
-  LONG_COMMENT: 'Комментарий не может быть длиннее 140 символов'
-};
 
 function isTextFieldsFocused(){
   return document.activeElement === hashtagsField ||
